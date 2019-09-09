@@ -15,6 +15,17 @@ namespace PuzzleGame
         public GamePage()
         {
             InitializeComponent();
+            InitializeGame(3);
+
+        }
+        private void InitializeGame(int numberOfRows)
+        {
+            
+        }
+
+        private void CreateImages()
+        {
+
         }
     }
 }
