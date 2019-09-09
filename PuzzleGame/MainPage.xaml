@@ -9,14 +9,14 @@
     <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Puzzle Game" 
-               FontSize="Large"
+               FontSize="Header"
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-            <Button Text="Easy (3x3)"/>
-            <Button Text="Medium (4x4)"/>
-            <Button Text="Hard (5x5)"/>
-            <Button Text="Records"/>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Button Text="Easy (3x3)" Clicked="Button_Clicked_Easy"/>
+            <Button Text="Medium (4x4)" Clicked="Button_Clicked_Medium"/>
+            <Button Text="Hard (5x5)" Clicked="Button_Clicked_Hard"/>
+            <Button Text="Records" Clicked="Button_Clicked_Records"/>
         </StackLayout>
     </StackLayout>
 
