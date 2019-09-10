@@ -23,15 +23,15 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="1" Grid.Row="0" Grid.Column="0" />
-                <Label Text="2" Grid.Row="0" Grid.Column="1" />
-                <Label Text="3" Grid.Row="0" Grid.Column="2" />
-                <Label Text="4" Grid.Row="1" Grid.Column="0" />
-                <Label Text="5" Grid.Row="1" Grid.Column="1" />
-                <Label Text="6" Grid.Row="1" Grid.Column="2" />
-                <Label Text="7" Grid.Row="2" Grid.Column="0" />
-                <Label Text="8" Grid.Row="2" Grid.Column="1" />
-                <Label Text="9" Grid.Row="2" Grid.Column="2" />
+                <Image Grid.Row="0" Grid.Column="0" x:Name="_01"/>
+                <Image Grid.Row="0" Grid.Column="1" x:Name="_02"/>
+                <Image Grid.Row="0" Grid.Column="2" x:Name="_03"/>
+                <Image Grid.Row="1" Grid.Column="0" x:Name="_04"/>
+                <Image Grid.Row="1" Grid.Column="1" x:Name="_05"/>
+                <Image Grid.Row="1" Grid.Column="2" x:Name="_06"/>
+                <Image Grid.Row="2" Grid.Column="0" x:Name="_07"/>
+                <Image Grid.Row="2" Grid.Column="1" x:Name="_08"/>
+                <Image Grid.Row="2" Grid.Column="2" x:Name="_09"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

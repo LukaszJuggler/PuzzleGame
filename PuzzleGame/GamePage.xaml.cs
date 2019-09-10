@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PuzzleGame
@@ -18,8 +19,13 @@ namespace PuzzleGame
 
         private void CreateImages()
         {
+            var imagesource = new UriImageSource { Uri = new Uri("https://picsum.photos/600") };
+            _01.Source = imagesource;
 
-            
+            //var image = new Image { Source = "img01.jpg" };
+            //_01.Source = image.Source;
+            //_01.Source = "img01.jpg";
+
         }
     }
 }
