@@ -18,17 +18,17 @@ namespace PuzzleGame
 
         private async void Button_Clicked_Easy(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new GamePage());
+            await Navigation.PushAsync(new GamePage(3));
         }
 
         private async void Button_Clicked_Medium(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new GamePage());
+            await Navigation.PushAsync(new GamePage(4));
         }
 
         private async void Button_Clicked_Hard(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new GamePage());
+            await Navigation.PushAsync(new GamePage(5));
         }
 
         private async void Button_Clicked_Records(object sender, EventArgs e)
