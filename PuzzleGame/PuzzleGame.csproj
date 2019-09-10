@@ -10,11 +10,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Drawable\img01.jpg" />
+    <None Remove="Resource\img01\01.jpg" />
+    <None Remove="Resource\img01\02.jpg" />
+    <None Remove="Resource\img01\03.jpg" />
+    <None Remove="Resource\img01\04.jpg" />
+    <None Remove="Resource\img01\05.jpg" />
+    <None Remove="Resource\img01\06.jpg" />
+    <None Remove="Resource\img01\07.jpg" />
+    <None Remove="Resource\img01\08.jpg" />
+    <None Remove="Resource\img01\09.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Drawable\img01.jpg" />
+    <EmbeddedResource Include="Resource\abc.jpg" />
+    <EmbeddedResource Include="Resource\img01\01.jpg" />
+    <EmbeddedResource Include="Resource\img01\02.jpg" />
+    <EmbeddedResource Include="Resource\img01\03.jpg" />
+    <EmbeddedResource Include="Resource\img01\04.jpg" />
+    <EmbeddedResource Include="Resource\img01\05.jpg" />
+    <EmbeddedResource Include="Resource\img01\06.jpg" />
+    <EmbeddedResource Include="Resource\img01\07.jpg" />
+    <EmbeddedResource Include="Resource\img01\08.jpg" />
+    <EmbeddedResource Include="Resource\img01\09.jpg" />
   </ItemGroup>
 
   <ItemGroup>
