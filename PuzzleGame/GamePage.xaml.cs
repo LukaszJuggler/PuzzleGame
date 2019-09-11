@@ -18,12 +18,8 @@ namespace PuzzleGame
             InitializeComponent();
             InitializeGame(numberOfRows);
         }
-        private void InitializeGame(int numberOfRows)
-        {
-            CreateImages(numberOfRows);
-        }
 
-        private void CreateImages(int numberOfRows)
+        private void InitializeGame(int numberOfRows)
         {
             Image[] xamlElements = new[] { _01, _02, _03, _04, _05, _06, _07, _08, _09 };
             int blankPuzzlePos = 0;
@@ -44,33 +40,24 @@ namespace PuzzleGame
                 {
                     if (blankPuzzlePos + numberOfRows < numberOfRows*numberOfRows && clickedImage == xamlElements[blankPuzzlePos+ numberOfRows]) //clicked under the blank puzzle
                     {
-                        var temp = xamlElements[blankPuzzlePos].Source;
-                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
-                        clickedImage.Source = temp;
+                        MoveTile(clickedImage);
                         blankPuzzlePos += numberOfRows;
                     }
                     else if (blankPuzzlePos - numberOfRows >= 0 && clickedImage == xamlElements[blankPuzzlePos - numberOfRows]) //clicked over the blank puzzle
                     {
-                        var temp = xamlElements[blankPuzzlePos].Source;
-                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
-                        clickedImage.Source = temp;
+                        MoveTile(clickedImage);
                         blankPuzzlePos -= numberOfRows;
                     }
                     else if (blankPuzzlePos % numberOfRows >0 && clickedImage == xamlElements[blankPuzzlePos-1]) //clicked right to the blank puzzle
                     {
-                        var temp = xamlElements[blankPuzzlePos].Source;
-                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
-                        clickedImage.Source = temp;
+                        MoveTile(clickedImage);
                         blankPuzzlePos --;
                     }
                     else if (blankPuzzlePos % numberOfRows < numberOfRows-1 && clickedImage == xamlElements[blankPuzzlePos + 1]) //clicked left to the blank puzzle
                     {
-                        var temp = xamlElements[blankPuzzlePos].Source;
-                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
-                        clickedImage.Source = temp;
+                        MoveTile(clickedImage);
                         blankPuzzlePos++;
                     }
-                    moves++;
                 }
             };
 
@@ -89,6 +76,15 @@ namespace PuzzleGame
                     xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
                     count++;
                 }
+            }
+
+            void MoveTile(Image clickedImage)
+            {
+                var temp = xamlElements[blankPuzzlePos].Source;
+                xamlElements[blankPuzzlePos].Source = clickedImage.Source;
+                clickedImage.Source = temp;
+
+                moves++;
             }
         }
     }
