@@ -23,36 +23,30 @@ namespace PuzzleGame
 
         private void CreateImages(int numberOfRows)
         {
-            //var imagesource = new UriImageSource { Uri = new Uri("https://picsum.photos/600") };
+            Image[] xamlElements = new[] { _01, _02, _03, _04, _05, _06, _07, _08, _09 };
 
-            var grid = new Grid
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (sender, e) =>
             {
-                RowDefinitions =
-            {
-                new RowDefinition(),
-                new RowDefinition(),
-                new RowDefinition()
-            },
-                ColumnDefinitions =
-            {
-                new ColumnDefinition (),
-                new ColumnDefinition (),
-                new ColumnDefinition ()
-            }
+                // cast to an image
+                Image theImage = (Image)sender;
+
+                // now you have a reference to the image
+                theImage.Source = xamlElements[0].Source;
             };
 
+
             int count = 0;
-            for (int i = 0; i< numberOfRows; i++)
+            for (int i = 0; i < numberOfRows; i++)
             {
                 for (int j = 0; j < numberOfRows; j++)
                 {
-                    count++;
-                    grid.Children.Add(new Image { Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{count}.jpg") }, j, i);
+                    xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{count+1}.jpg");
 
+                    xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
+                    count++;
                 }
             }
-
-            StackLayoutMap.Children.Add(grid);
         }
     }
 }

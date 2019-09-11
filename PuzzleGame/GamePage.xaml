@@ -12,7 +12,7 @@
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" />
             <StackLayout x:Name="StackLayoutMap" Grid.Row="0" Padding="0" />
-            <!--<Grid VerticalOptions="CenterAndExpand" 
+            <Grid VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -33,7 +33,7 @@
                 <Image Grid.Row="2" Grid.Column="0" x:Name="_07"/>
                 <Image Grid.Row="2" Grid.Column="1" x:Name="_08"/>
                 <Image Grid.Row="2" Grid.Column="2" x:Name="_09"/>
-            </Grid>-->
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
