@@ -38,11 +38,24 @@ namespace PuzzleGame
             tapGestureRecognizer.Tapped += (sender, e) =>
             {
                 // cast to an image
-                Image theImage = (Image)sender;
+                Image clickedImage = (Image)sender;
 
-                if (theImage != xamlElements[blankPuzzlePos])
+                if (clickedImage != xamlElements[blankPuzzlePos])
                 {
-                    theImage.Source = xamlElements[0].Source;
+                    if (blankPuzzlePos + numberOfRows < numberOfRows*numberOfRows && clickedImage == xamlElements[blankPuzzlePos+ numberOfRows]) //clicked under the blank puzzle
+                    {
+                        var temp = xamlElements[blankPuzzlePos].Source;
+                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
+                        clickedImage.Source = temp;
+                        blankPuzzlePos += numberOfRows;
+
+                    } else if (blankPuzzlePos - numberOfRows >= 0 && clickedImage == xamlElements[blankPuzzlePos - numberOfRows]) //clicked over the blank puzzle
+                    {
+                        var temp = xamlElements[blankPuzzlePos].Source;
+                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
+                        clickedImage.Source = temp;
+                        blankPuzzlePos -= numberOfRows;
+                    }
                     moves++;
                 }
             };
