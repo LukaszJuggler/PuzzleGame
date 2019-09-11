@@ -48,13 +48,27 @@ namespace PuzzleGame
                         xamlElements[blankPuzzlePos].Source = clickedImage.Source;
                         clickedImage.Source = temp;
                         blankPuzzlePos += numberOfRows;
-
-                    } else if (blankPuzzlePos - numberOfRows >= 0 && clickedImage == xamlElements[blankPuzzlePos - numberOfRows]) //clicked over the blank puzzle
+                    }
+                    else if (blankPuzzlePos - numberOfRows >= 0 && clickedImage == xamlElements[blankPuzzlePos - numberOfRows]) //clicked over the blank puzzle
                     {
                         var temp = xamlElements[blankPuzzlePos].Source;
                         xamlElements[blankPuzzlePos].Source = clickedImage.Source;
                         clickedImage.Source = temp;
                         blankPuzzlePos -= numberOfRows;
+                    }
+                    else if (blankPuzzlePos % numberOfRows >0 && clickedImage == xamlElements[blankPuzzlePos-1]) //clicked right to the blank puzzle
+                    {
+                        var temp = xamlElements[blankPuzzlePos].Source;
+                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
+                        clickedImage.Source = temp;
+                        blankPuzzlePos --;
+                    }
+                    else if (blankPuzzlePos % numberOfRows < numberOfRows-1 && clickedImage == xamlElements[blankPuzzlePos + 1]) //clicked left to the blank puzzle
+                    {
+                        var temp = xamlElements[blankPuzzlePos].Source;
+                        xamlElements[blankPuzzlePos].Source = clickedImage.Source;
+                        clickedImage.Source = temp;
+                        blankPuzzlePos++;
                     }
                     moves++;
                 }
