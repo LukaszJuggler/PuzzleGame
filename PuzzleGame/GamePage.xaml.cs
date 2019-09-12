@@ -28,6 +28,7 @@ namespace PuzzleGame
             Random rnd = new Random();
             int[] order = new int[] { 0,1,2,3,4,5,6,7,8};
             int[] difficulty = new int[] { 10, 20, 40 };
+            string[] storageKeys = new string[] { "lvl1", "lvl2", "lvl3" };
 
             //react to taps
             var tapGestureRecognizer = new TapGestureRecognizer();
@@ -102,15 +103,28 @@ namespace PuzzleGame
                     movesLabel.Text = $"You solved the puzzle in {moves} moves!";
 
                     //save the result
-                    //var previousRecords = (Application.Current.Properties["records"].ToString());
-
-                    //Application.Current.Properties["records"] = "343534545";
-                    //Application.Current.SavePropertiesAsync();
+                    SaveRecord();
 
                     //block interaction with tiles
                     gameMode = false;
                 }
                 return isSwapped;
+            }
+            async void SaveRecord()
+            {
+                if (Application.Current.Properties.ContainsKey(storageKeys[level]))
+                {
+                    int previousRecord = (int)Application.Current.Properties[storageKeys[level]];
+                    if (previousRecord > moves)
+                    {
+                        Application.Current.Properties[storageKeys[level]] = moves.ToString();
+                    }
+                }
+                else
+                {
+                    App.Current.Properties.Add(storageKeys[level], moves);
+                    await App.Current.SavePropertiesAsync();
+                }
             }
 
             void ShuffleTiles(int numberOfMoves)

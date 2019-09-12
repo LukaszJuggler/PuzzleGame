@@ -11,11 +11,11 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                 FontSize="Large"/>
-            <Label Text="Easy: ---" VerticalOptions="CenterAndExpand" 
+            <Label x:Name="Easy" Text="Easy: ---" VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"></Label>
-            <Label Text="Medium: ---" VerticalOptions="CenterAndExpand" 
+            <Label x:Name="Medium" Text="Medium: ---" VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"></Label>
-            <Label Text="Hard: ---" VerticalOptions="CenterAndExpand" 
+            <Label x:Name="Hard" Text="Hard: ---" VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"></Label>
         </StackLayout>
     </ContentPage.Content>
