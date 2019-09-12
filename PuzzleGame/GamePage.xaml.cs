@@ -29,7 +29,6 @@ namespace PuzzleGame
 
             //mix puzzles
             Random rnd = new Random();
-            //int[] order = Enumerable.Range(0, 9).OrderBy(c => rnd.Next()).ToArray();
             int[] order = new int[] { 0,1,2,3,4,5,6,7,8};
 
             //react to taps
@@ -37,17 +36,15 @@ namespace PuzzleGame
             tapGestureRecognizer.Tapped += (sender, e) => { OnTap(sender); };
 
             int count = 0;
-            for (int i = 0; i < numberOfRows; i++)
+            for (int i = 0; i < xamlElements.Length; i++)
             {
-                for (int j = 0; j < numberOfRows; j++)
-                {
-                    xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{count+1}.jpg");
+                xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{count + 1}.jpg");
 
-                    xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
-                    count++;
-                }
+                xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
+                count++;
             }
-            MixTiles(50);
+
+            MixTiles(difficulty);
             gameMode = true;
 
             void OnTap(object sender)
@@ -102,6 +99,7 @@ namespace PuzzleGame
                     }
                 }
             }
+
             void MixTiles(int numberOfMoves)
             {
                 for (int i = 0; i<numberOfMoves; i++)
@@ -114,6 +112,7 @@ namespace PuzzleGame
                 orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
 
             }
+
             void MoveTile(Image clickedImage)
             {
                 var temp = xamlElements[blankPuzzlePos].Source;
@@ -124,6 +123,7 @@ namespace PuzzleGame
                 movesLabel.Text = $"Moves: {moves}";
                 orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
             }
+
             bool IsSolved()
             {
                 bool allSolved = true;
