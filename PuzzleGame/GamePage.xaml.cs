@@ -12,8 +12,7 @@ namespace PuzzleGame
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage
-    {
-        
+    {     
         public GamePage(int numberOfRows, int difficulty)
         {
             InitializeComponent();
@@ -33,7 +32,7 @@ namespace PuzzleGame
 
             //react to taps
             var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += (sender, e) => { OnTap(sender); };
+            tapGestureRecognizer.Tapped += (sender, e) => { if (gameMode) { OnTap(sender); } };
 
             int count = 0;
             for (int i = 0; i < xamlElements.Length; i++)
@@ -44,7 +43,7 @@ namespace PuzzleGame
                 count++;
             }
 
-            MixTiles(difficulty);
+            ShuffleTiles(difficulty);
             gameMode = true;
 
             void OnTap(object sender)
@@ -91,16 +90,19 @@ namespace PuzzleGame
                         blankPuzzlePos++;
                     }
                 }
-                if (gameMode && IsSolved())
+                if (gameMode && IsSolved()) //when you win
                 {
-                    for (int i = 0; i < xamlElements.Length; i++)
-                    {
-                        xamlElements[i].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.01.jpg");
-                    }
+                    //display message
+                    movesLabel.Text = $"You solved the puzzle in {moves} moves!";
+
+                    //save result
+
+                    //block playing
+                    gameMode = false;
                 }
             }
 
-            void MixTiles(int numberOfMoves)
+            void ShuffleTiles(int numberOfMoves)
             {
                 for (int i = 0; i<numberOfMoves; i++)
                 {
