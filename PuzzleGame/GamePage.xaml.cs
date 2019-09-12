@@ -22,6 +22,8 @@ namespace PuzzleGame
         private void InitializeGame(int numberOfRows)
         {
             Image[] xamlElements = new[] { _01, _02, _03, _04, _05, _06, _07, _08, _09 };
+
+            Image[] orderedElements = new Image[numberOfRows * numberOfRows];
             int blankPuzzlePos = 0;
             int moves = 0;
 
@@ -58,6 +60,14 @@ namespace PuzzleGame
                         MoveTile(clickedImage);
                         blankPuzzlePos++;
                     }
+
+                    //if (IsSolved())
+                    //{
+                    //    for (int i = 0; i < xamlElements.Length; i++)
+                    //    {
+                    //        xamlElements[i].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.01.jpg");
+                    //    }
+                    //}
                 }
             };
 
@@ -72,6 +82,7 @@ namespace PuzzleGame
                         blankPuzzlePos = count;
                     }
                     xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{order[count]}.jpg");
+                    orderedElements[order[count]-1] = xamlElements[count];
 
                     xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
                     count++;
@@ -85,6 +96,19 @@ namespace PuzzleGame
                 clickedImage.Source = temp;
 
                 moves++;
+            }
+            bool IsSolved()
+            {
+                bool allSolved = true;
+
+                for (int i = 0; i < xamlElements.Length; i++)
+                {
+                    if (xamlElements[i].Source != orderedElements[i].Source)
+                    {
+                        allSolved = false;
+                    }
+                }
+                return allSolved;
             }
         }
     }

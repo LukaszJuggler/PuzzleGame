@@ -9,15 +9,15 @@
         <StackLayout>
             <Label Text="Puzzle Game"
                    FontSize="Title"
-                VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand" />
-            <StackLayout x:Name="StackLayoutMap" Grid.Row="0" Padding="0" />
-            <Grid VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" >
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" BackgroundColor="Yellow"/>
+            <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="Start"
+                HorizontalOptions="Start" BackgroundColor="Green" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                  
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -34,6 +34,7 @@
                 <Image Grid.Row="2" Grid.Column="1" x:Name="_08"/>
                 <Image Grid.Row="2" Grid.Column="2" x:Name="_09"/>
             </Grid>
+          <Label Text="Puzzle Game" VerticalOptions="FillAndExpand " HorizontalOptions="FillAndExpand " BackgroundColor="Pink"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
