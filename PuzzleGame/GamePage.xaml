@@ -12,29 +12,27 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" BackgroundColor="Yellow"/>
             <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="Start"
-                HorizontalOptions="Start" BackgroundColor="Green" >
+                HorizontalOptions="Start">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                  
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" x:Name="_01"/>
-                <Image Grid.Row="0" Grid.Column="1" x:Name="_02"/>
-                <Image Grid.Row="0" Grid.Column="2" x:Name="_03"/>
-                <Image Grid.Row="1" Grid.Column="0" x:Name="_04"/>
-                <Image Grid.Row="1" Grid.Column="1" x:Name="_05"/>
-                <Image Grid.Row="1" Grid.Column="2" x:Name="_06"/>
-                <Image Grid.Row="2" Grid.Column="0" x:Name="_07"/>
-                <Image Grid.Row="2" Grid.Column="1" x:Name="_08"/>
-                <Image Grid.Row="2" Grid.Column="2" x:Name="_09"/>
+                <Image Grid.Row="0" Grid.Column="0" x:Name="_01" HeightRequest="{Binding Width, Source={x:Reference _01}}"/>
+                <Image Grid.Row="0" Grid.Column="1" x:Name="_02" HeightRequest="{Binding Width, Source={x:Reference _02}}"/>
+                <Image Grid.Row="0" Grid.Column="2" x:Name="_03" HeightRequest="{Binding Width, Source={x:Reference _03}}"/>
+                <Image Grid.Row="1" Grid.Column="0" x:Name="_04" HeightRequest="{Binding Width, Source={x:Reference _04}}"/>
+                <Image Grid.Row="1" Grid.Column="1" x:Name="_05" HeightRequest="{Binding Width, Source={x:Reference _05}}"/>
+                <Image Grid.Row="1" Grid.Column="2" x:Name="_06" HeightRequest="{Binding Width, Source={x:Reference _06}}"/>
+                <Image Grid.Row="2" Grid.Column="0" x:Name="_07" HeightRequest="{Binding Width, Source={x:Reference _07}}"/>
+                <Image Grid.Row="2" Grid.Column="1" x:Name="_08" HeightRequest="{Binding Width, Source={x:Reference _08}}"/>
+                <Image Grid.Row="2" Grid.Column="2" x:Name="_09" HeightRequest="{Binding Width, Source={x:Reference _09}}"/>
             </Grid>
-          <Label Text="Puzzle Game" VerticalOptions="FillAndExpand " HorizontalOptions="FillAndExpand " BackgroundColor="Pink"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
