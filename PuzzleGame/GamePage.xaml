@@ -8,10 +8,14 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Puzzle Game"
-                   FontSize="Title"
+                FontSize="Title"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" BackgroundColor="Yellow"/>
-            <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="Start"
+                HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="movesLabel" Text="Moves: 0"
+                Font="Bold,20"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
+            <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="StartAndExpand"
                 HorizontalOptions="Start">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

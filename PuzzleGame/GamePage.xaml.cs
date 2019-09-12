@@ -13,6 +13,7 @@ namespace PuzzleGame
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage
     {
+        
         public GamePage(int numberOfRows)
         {
             InitializeComponent();
@@ -71,7 +72,6 @@ namespace PuzzleGame
                 }
             };
 
-
             int count = 0;
             for (int i = 0; i < numberOfRows; i++)
             {
@@ -96,6 +96,7 @@ namespace PuzzleGame
                 clickedImage.Source = temp;
 
                 moves++;
+                movesLabel.Text = $"Moves: {moves}";
             }
             bool IsSolved()
             {
