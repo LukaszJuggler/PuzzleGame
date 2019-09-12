@@ -13,41 +13,40 @@ namespace PuzzleGame
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage
     {     
-        public GamePage(int numberOfRows, int difficulty)
+        public GamePage(int numberOfRows, int level)
         {
             InitializeComponent();
-            InitializeGame(numberOfRows, difficulty);
+            InitializeGame(numberOfRows, level);
         }
 
-        private void InitializeGame(int numberOfRows, int difficulty)
+        private void InitializeGame(int numberOfRows, int level)
         {
             bool gameMode = false;
             Image[] xamlElements = new[] { _01, _02, _03, _04, _05, _06, _07, _08, _09 };
             int blankPuzzlePos = xamlElements.Length-1;
             int moves = 0;
-
-            //mix puzzles
             Random rnd = new Random();
             int[] order = new int[] { 0,1,2,3,4,5,6,7,8};
+            int[] difficulty = new int[] { 10, 20, 40 };
 
             //react to taps
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (sender, e) => { if (gameMode) { OnTap(sender); } };
 
-            int count = 0;
+
             for (int i = 0; i < xamlElements.Length; i++)
             {
-                xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{count + 1}.jpg");
+                xamlElements[i].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{i + 1}.jpg");
 
-                xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
-                count++;
+                xamlElements[i].GestureRecognizers.Add(tapGestureRecognizer);
             }
 
-            ShuffleTiles(difficulty);
+            ShuffleTiles(difficulty[level]);
             gameMode = true;
 
-            void OnTap(object sender)
+            bool OnTap(object sender)
             {
+                bool isSwapped = true;
                 // cast to an image
                 Image clickedImage = (Image)sender;
 
@@ -88,27 +87,39 @@ namespace PuzzleGame
 
                         MoveTile(clickedImage);
                         blankPuzzlePos++;
+                    } else
+                    {
+                        isSwapped = false;
                     }
+                } else
+                {
+                    isSwapped = false;
                 }
+
                 if (gameMode && IsSolved()) //when you win
                 {
                     //display message
                     movesLabel.Text = $"You solved the puzzle in {moves} moves!";
 
-                    //save result
+                    //save the result
+                    //var previousRecords = (Application.Current.Properties["records"].ToString());
 
-                    //block playing
+                    //Application.Current.Properties["records"] = "343534545";
+                    //Application.Current.SavePropertiesAsync();
+
+                    //block interaction with tiles
                     gameMode = false;
                 }
+                return isSwapped;
             }
 
             void ShuffleTiles(int numberOfMoves)
             {
-                for (int i = 0; i<numberOfMoves; i++)
+                int currentTry = 0;
+                while (currentTry < numberOfMoves)
                 {
                     int randomNum = rnd.Next(0, xamlElements.Length);
-
-                    OnTap(xamlElements[randomNum]);
+                    if (OnTap(xamlElements[randomNum])) { currentTry++; }
                 }
 
                 orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
@@ -121,9 +132,12 @@ namespace PuzzleGame
                 xamlElements[blankPuzzlePos].Source = clickedImage.Source;
                 clickedImage.Source = temp;
 
-                moves++;
-                movesLabel.Text = $"Moves: {moves}";
-                orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
+                if (gameMode)
+                {
+                    moves++;
+                    movesLabel.Text = $"Moves: {moves}";
+                    orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
+                }
             }
 
             bool IsSolved()
