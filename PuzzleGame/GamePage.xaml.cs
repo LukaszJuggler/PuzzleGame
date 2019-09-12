@@ -23,14 +23,12 @@ namespace PuzzleGame
         private void InitializeGame(int numberOfRows)
         {
             Image[] xamlElements = new[] { _01, _02, _03, _04, _05, _06, _07, _08, _09 };
-
-            Image[] orderedElements = new Image[numberOfRows * numberOfRows];
             int blankPuzzlePos = 0;
             int moves = 0;
 
             //mix puzzles
             Random rnd = new Random();
-            int[] order = Enumerable.Range(1, 9).OrderBy(c => rnd.Next()).ToArray();
+            int[] order = Enumerable.Range(0, 9).OrderBy(c => rnd.Next()).ToArray();
 
             //react to taps
             var tapGestureRecognizer = new TapGestureRecognizer();
@@ -43,32 +41,48 @@ namespace PuzzleGame
                 {
                     if (blankPuzzlePos + numberOfRows < numberOfRows*numberOfRows && clickedImage == xamlElements[blankPuzzlePos+ numberOfRows]) //clicked under the blank puzzle
                     {
+                        var temp = order[blankPuzzlePos];
+                        order[blankPuzzlePos] = order[blankPuzzlePos + numberOfRows];
+                        order[blankPuzzlePos + numberOfRows] = temp;
+
                         MoveTile(clickedImage);
                         blankPuzzlePos += numberOfRows;
                     }
                     else if (blankPuzzlePos - numberOfRows >= 0 && clickedImage == xamlElements[blankPuzzlePos - numberOfRows]) //clicked over the blank puzzle
                     {
+                        var temp = order[blankPuzzlePos];
+                        order[blankPuzzlePos] = order[blankPuzzlePos - numberOfRows];
+                        order[blankPuzzlePos - numberOfRows] = temp;
+
                         MoveTile(clickedImage);
                         blankPuzzlePos -= numberOfRows;
                     }
                     else if (blankPuzzlePos % numberOfRows >0 && clickedImage == xamlElements[blankPuzzlePos-1]) //clicked right to the blank puzzle
                     {
+                        var temp = order[blankPuzzlePos];
+                        order[blankPuzzlePos] = order[blankPuzzlePos-1];
+                        order[blankPuzzlePos-1] = temp;
+
                         MoveTile(clickedImage);
                         blankPuzzlePos --;
                     }
                     else if (blankPuzzlePos % numberOfRows < numberOfRows-1 && clickedImage == xamlElements[blankPuzzlePos + 1]) //clicked left to the blank puzzle
                     {
+                        var temp = order[blankPuzzlePos];
+                        order[blankPuzzlePos] = order[blankPuzzlePos + 1];
+                        order[blankPuzzlePos + 1] = temp;
+
                         MoveTile(clickedImage);
                         blankPuzzlePos++;
                     }
 
-                    //if (IsSolved())
-                    //{
-                    //    for (int i = 0; i < xamlElements.Length; i++)
-                    //    {
-                    //        xamlElements[i].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.01.jpg");
-                    //    }
-                    //}
+                    if (IsSolved())
+                    {
+                        for (int i = 0; i < xamlElements.Length; i++)
+                        {
+                            xamlElements[i].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.01.jpg");
+                        }
+                    }
                 }
             };
 
@@ -77,12 +91,11 @@ namespace PuzzleGame
             {
                 for (int j = 0; j < numberOfRows; j++)
                 {
-                    if (order[count] == 9)
+                    if (order[count] == 8)
                     {
                         blankPuzzlePos = count;
                     }
-                    xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{order[count]}.jpg");
-                    orderedElements[order[count]-1] = xamlElements[count];
+                    xamlElements[count].Source = ImageSource.FromResource($"PuzzleGame.Resource.img01.0{order[count]+1}.jpg");
 
                     xamlElements[count].GestureRecognizers.Add(tapGestureRecognizer);
                     count++;
@@ -97,14 +110,15 @@ namespace PuzzleGame
 
                 moves++;
                 movesLabel.Text = $"Moves: {moves}";
+                orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
             }
             bool IsSolved()
             {
                 bool allSolved = true;
 
-                for (int i = 0; i < xamlElements.Length; i++)
+                for (int i = 0; i < order.Length; i++)
                 {
-                    if (xamlElements[i].Source != orderedElements[i].Source)
+                    if (order[i] != i)
                     {
                         allSolved = false;
                     }

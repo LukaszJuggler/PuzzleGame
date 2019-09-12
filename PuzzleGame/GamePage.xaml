@@ -15,6 +15,10 @@
                 Font="Bold,20"
                 VerticalOptions="StartAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="orderLabel" Text="Order:"
+                Font="Bold,20"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
             <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="StartAndExpand"
                 HorizontalOptions="Start">
                 <Grid.RowDefinitions>
