@@ -23,7 +23,7 @@ namespace PuzzleGame
             int moves = 0;
             Random rnd = new Random();
             int[] order = new int[] { 0,1,2,3,4,5,6,7,8};
-            int[] difficulty = new int[] { 10, 20, 40 };
+            int[] difficulty = new int[] { 9, 19, 39 };
             string[] storageKeys = new string[] { "lvl1", "lvl2", "lvl3" };
 
             //react to taps
