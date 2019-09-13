@@ -114,16 +114,17 @@ namespace PuzzleGame
             {
                 if (Application.Current.Properties.ContainsKey(storageKeys[level]))
                 {
-                    int previousRecord = (int)Application.Current.Properties[storageKeys[level]];
+                    int previousRecord = int.Parse(Application.Current.Properties[storageKeys[level]].ToString());
                     if (previousRecord > moves)
                     {
                         Application.Current.Properties[storageKeys[level]] = moves.ToString();
+                        await Application.Current.SavePropertiesAsync();
                     }
                 }
                 else
                 {
-                    App.Current.Properties.Add(storageKeys[level], moves);
-                    await App.Current.SavePropertiesAsync();
+                    Application.Current.Properties.Add(storageKeys[level], moves.ToString());
+                    await Application.Current.SavePropertiesAsync();
                 }
             }
 
