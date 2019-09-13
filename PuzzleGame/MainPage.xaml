@@ -7,7 +7,6 @@
              x:Class="PuzzleGame.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
         <Label Text="Puzzle Game" 
                FontSize="Header"
            HorizontalOptions="Center"

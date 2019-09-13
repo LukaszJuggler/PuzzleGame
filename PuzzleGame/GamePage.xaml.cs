@@ -1,9 +1,5 @@
 ﻿
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Image = Xamarin.Forms.Image;
