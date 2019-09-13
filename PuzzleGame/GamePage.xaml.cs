@@ -136,9 +136,6 @@ namespace PuzzleGame
                     int randomNum = rnd.Next(0, xamlElements.Length);
                     if (OnTap(xamlElements[randomNum])) { currentTry++; }
                 }
-
-                orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
-
             }
 
             void MoveTile(Image clickedImage)
@@ -151,7 +148,6 @@ namespace PuzzleGame
                 {
                     moves++;
                     movesLabel.Text = $"Moves: {moves}";
-                    orderLabel.Text = $"{order[0]} {order[1]} {order[2]} {order[3]} {order[4]} {order[5]} {order[6]} {order[7]} {order[8]}";
                 }
             }
 
